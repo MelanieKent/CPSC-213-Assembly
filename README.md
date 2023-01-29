@@ -1,5 +1,5 @@
 # cpsc_213_assembly
-Short segments of assembly code for CPSC 213.
+Short segments of SM213 assembly code for CPSC 213.
 
 Swap assembly code in C: 
 
