@@ -12,29 +12,39 @@
                  ld (r2, r4, 4), r7       # r7 = a[0]
                  st r7, (r3)              # s[tos] = s[0] = a[0]
 
-                 st r5, (r1)              # tos = 1
+                 ld (r1), r7              # r7 = value of tos
+                 inc r7                   # r7 = value of tos+1
+                 st r7, (r1)              # tos++
                  ld (r2, r5, 4), r7       # r7 = a[1]
-                 st r7, (r3, r5, 4)       # s[tos] = s[1] = a[1]
+                 st r7, (r3, r5, 4)       # s[tos] = a[1]
 
-                 st r6, (r1)              # tos = 2
+                 ld (r1), r7              # r7 = value of tos
+                 inc r7                   # r7 = value of tos+1
+                 st r7, (r1)              # tos++
                  ld (r2, r6, 4), r7       # r7 = a[2]
-                 st r7, (r3, r6, 4)       # s[tos] = s[2] = a[2]
+                 st r7, (r3, r6, 4)       # s[tos]  = a[2]
 
-                 inc r6                   # r6 = 3
-                 st r6, (r1)              # tos = 3
-                 dec r6                   # r6 = 2
-                 st r6, (r1)              # tos = 2
+                 ld (r1), r7              # r7 = value of tos
+                 inc r7                   # r7 = value of tos+1
+                 st r7, (r1)              # tos++
+                 ld (r1), r7              # r7 = value of tos
+                 dec r7                   # r7 = value of tos-1
+                 st r7, (r1)              # tos--
 
                  ld (r3, r6, 4), r7       # r7 = s[tos] = s[2]
                  st r7, (r0)              # tmp = s[tos]
 
-                 st r5, (r1)              # tos = 1
+                 ld (r1), r7              # r7 = value of tos
+                 dec r7                   # r7 = value of tos-1
+                 st r7, (r1)              # tos--
                  ld (r3, r5, 4), r7       # r7 = s[tos] = s[1]
                  ld (r0), r6              # r6 = value of tmp
                  add r6, r7               # r7 = tmp + s[tos]
                  st r7, (r0)              # tmp = tmp + s[tos]
 
-                 st r4, (r1)              # tos = 0
+                 ld (r1), r7              # r7 = value of tos
+                 dec r7                   # r7 = value of tos-1
+                 st r7, (r1)              # tos--
                  ld (r3, r4, 4), r7       # r7 = s[tos] = s[0]
                  ld (r0), r6              # r6 = value of temp
                  add r6, r7               # tmp + s[tos]
