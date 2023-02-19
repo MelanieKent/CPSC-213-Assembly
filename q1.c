@@ -28,12 +28,12 @@ int    i, v0, v1, v2, v3;
 ///
 
 void q1() {
-  v0 = a->x[i];
-  v1 = a->b.y[i];
-  v2 = a->b.a->x[i];
-  a->b.a = a;
-  v3 = a->b.a->b.y[i];
-}
+  v0 = a->x[i];           // 4 memory reads; a, a->x, i, a->x[i]
+  v1 = a->b.y[i];         // 1 memory read; y[i]
+  v2 = a->b.a->x[i];      // 3 memory reads; a->b.a, a->b.a->x, a->b.a->x[i]
+  a->b.a = a;             // 0 memory reads
+  v3 = a->b.a->b.y[i];    // 0 memory reads
+} 
 
 ////////////
 /// test harness (run with no args for default values; you code must work for arbitrary)
